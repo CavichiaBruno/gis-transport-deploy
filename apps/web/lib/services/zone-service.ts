@@ -1,15 +1,17 @@
 import { Zone } from "@gis/shared";
-import { repository } from "@gis/database";
 
 export class ZoneService {
     /**
-     * Fetches zones (LEZ, Restricted, etc.) around a point from the local cache.
+     * Fetches zones (LEZ, Restricted, etc.) around a point from the API.
      */
     static async getZones(lat: number, lon: number, radius = 5000): Promise<Zone[]> {
         try {
-            // Using "Loading" instead of "Fetching" to avoid confusion with network requests
-            console.log(`[ZoneService] Loading zones from local DB for ${lat},${lon} (radius: ${radius}m)`);
-            return await repository.getZones(lat, lon, radius);
+            console.log(`[ZoneService] Fetching zones from API for ${lat},${lon} (radius: ${radius}m)`);
+            const response = await fetch(`/api/zones?lat=${lat}&lon=${lon}&radius=${radius}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
         } catch (err) {
             console.error("ZoneService Error:", err);
             return [];

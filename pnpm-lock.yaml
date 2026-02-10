@@ -11,10 +11,10 @@ importers:
   apps/api:
     dependencies:
       '@gis/database':
-        specifier: workspace:*
+        specifier: file:../../packages/database
         version: link:../../packages/database
       '@gis/shared':
-        specifier: workspace:*
+        specifier: file:../../packages/shared
         version: link:../../packages/shared
       cors:
         specifier: ^2.8.5
@@ -250,7 +250,7 @@ importers:
   packages/database:
     dependencies:
       '@gis/shared':
-        specifier: workspace:*
+        specifier: file:../shared
         version: link:../shared
       '@prisma/client':
         specifier: ^6.0.0
