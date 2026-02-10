@@ -1,5 +1,5 @@
-import { Driver, PrismaClient } from "@prisma/client";
-import { GisDashboardData, VehicleType, Zone } from "@gis/shared";
+import { PrismaClient } from "@prisma/client";
+import { GisDashboardData, VehicleType, Zone, Driver } from "@gis/shared";
 
 export interface IGisRepository {
   getLatestSnapshot(): Promise<GisDashboardData | null>;
