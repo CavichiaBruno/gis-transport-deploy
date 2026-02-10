@@ -1,4 +1,4 @@
-import { PrismaClient } from "./dist/prisma-client";
+import { PrismaClient } from "@prisma/client";
 import { GisDashboardData, VehicleType, Zone, Driver } from "@gis/shared";
 
 export interface IGisRepository {
@@ -223,7 +223,7 @@ export class PrismaGisRepository implements IGisRepository {
     }
 
     // Merge speeding events into driver objects
-    return drivers.map((d) => ({
+    return drivers.map((d: any) => ({
       ...d,
       speedingEvents: speedingEvents.filter((se: any) => se.driverId === d.id),
     }));
